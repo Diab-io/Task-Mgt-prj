@@ -8,4 +8,4 @@ def login():
 
 @auths.route('/signup')
 def signup():
-    return "Signup"
+    return render_template('signup.html')
