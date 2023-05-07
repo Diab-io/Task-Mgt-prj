@@ -1,33 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/login.css">
-    <title>Login</title>
-</head>
-<body>
-    <div class="container">
-        <div class="pad-box">
-            <h1>Sign in</h1>
-            <p>Maximize your <span id="productivity">productivity</span></p>
-            <div class="form">
-                <form action="POST">
-                        <div class="email">
-                            <label for="email">Email:</label> <br>
-                            <input type="email" name="email" placeholder="Email">
-                        </div>
-                        <div class="password">
-                            <label for="password">Password:</label> <br>
-                            <input type="password" name="password" placeholder="Password">
-                        </div>
-                        <a href="#" class="ex-link">Forgot password?</a>
-                        <button>Login</button>
-                        <p>Don't have an account? <a href="/signup" class="ex-link">Sign up</a></p>
-                </form>
-            </div>
+{% extends 'base.html' %}
+{% block title %}login{% endblock %}
+{% block head %}<link rel="stylesheet" href="../static/login.css">{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="pad-box">
+        {% for message in get_flashed_messages() %}
+        <h3>{{ message }}</h3>
+        {% endfor %}
+        <h1>Sign in</h1>
+        <p>Maximize your <span id="productivity">productivity</span></p>
+        <div class="form">
+            <form action="POST">
+                    <div class="email">
+                        <label for="email">Email:</label> <br>
+                        <input type="email" name="email" placeholder="Email">
+                    </div>
+                    <div class="password">
+                        <label for="password">Password:</label> <br>
+                        <input type="password" name="password" placeholder="Password">
+                    </div>
+                    <a href="#" class="ex-link">Forgot password?</a>
+                    <button>Login</button>
+                    <p>Don't have an account? <a href="/signup" class="ex-link">Sign up</a></p>
+            </form>
         </div>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}
