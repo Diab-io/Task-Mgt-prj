@@ -23,8 +23,8 @@ def login():
                 flash('Wrong password', category='error')
         else:
             flash('User not found')
-    else:
-        return render_template('login.html')
+
+    return render_template('login.html')
 
 @auths.route('/signup', methods=['GET', 'POST'])
 def signup():
