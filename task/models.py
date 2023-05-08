@@ -8,7 +8,7 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(150))
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150), unique=True)
-    todos = db.relationship('Todo', backref='user')
+    todos = db.relationship('Todo', backref='user', passive_deletes=True)
 
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
