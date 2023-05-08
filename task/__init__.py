@@ -12,25 +12,26 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
-
     db.init_app(app)
+    
     from .views import view
     from .auth import auths
+
+    app.register_blueprint(view, url_prefix='/')
+    app.register_blueprint(auths, url_prefix='/')
+
+    from .models import User, Todo
+
+    create_database(app)
 
     login_manager = LoginManager()
     login_manager.init_app(app)
     login_manager.login_view = 'auths.login'
 
-    from .models import User, Todo
-
     @login_manager.user_loader
     def load_user(id):
         return User.query.get(int(id))
 
-    create_database(app)
-    
-    app.register_blueprint(view, url_prefix='/')
-    app.register_blueprint(auths, url_prefix='/')
 
 
     return app
