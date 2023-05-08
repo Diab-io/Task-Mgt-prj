@@ -1,6 +1,33 @@
 {% extends 'base.html' %}
 {% block title %} Welcome {% endblock %}
+{% block head %} <link rel="stylesheet" href="../static/home.css"> {% endblock %}
 {% block content %}
-<h1>Welcome {{ user }}</h1>
-<a href="/logout">logout</a>
+<div class="container">
+    <div class="header">
+      <h1>To-Do List</h1>
+      <a href="/logout" class="logout-link">Logout</a>
+    </div>
+    <form action="#" method="POST">
+      <input type="text" placeholder="Enter task..." name="created_task"/>
+      <button type="submit">Add Task</button>
+    </form>
+    <ul>
+      {% if todos %}
+        {% for todo in todos %}
+          <li>
+            <div class="todo-item">
+                <div class="text">
+                    <span class="todo-text">{{ todo.text }}</span>
+                </div>
+                <div class="todo-btn">
+                    <a href="/post-delete/{{ todo.id }}"><button class="delete-button">Delete</button></a>
+                    <a href="/post-complete/{{ todo.id }}"><button class="complete-button">Complete</button></a>
+                </div>
+            </div>
+          </li>
+        {% endfor %}
+      {% endif %}
+    </ul>
+</div>
+  
 {% endblock %}
