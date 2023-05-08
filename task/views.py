@@ -4,6 +4,7 @@ from flask_login import current_user, login_required
 view = Blueprint('view', __name__)
 
 @view.route('/home')
+@view.route('/')
 @login_required
 def home():
     return render_template('home.html', user=current_user.name)
