@@ -14,6 +14,7 @@
     <ul>
       {% if todos %}
         {% for todo in todos %}
+          {% if not todo.completed %}
           <li>
             <div class="todo-item">
                 <div class="text">
@@ -25,6 +26,26 @@
                 </div>
             </div>
           </li>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </ul>
+    <ul>
+      {% if todos %}
+        <h1>Completed</h1>
+        {% for todo in todos %}
+          {% if todo.completed %}
+            <li>
+              <div class="todo-item">
+                  <div class="text">
+                      <span class="todo-text"><strike>{{ todo.text }}</strike></span>
+                  </div>
+                  <div class="complete-btn">
+                      <p>completed</p>
+                  </div>
+              </div>
+            </li>
+          {% endif %}
         {% endfor %}
       {% endif %}
     </ul>
