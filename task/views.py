@@ -6,6 +6,7 @@ from . import db
 view = Blueprint('view', __name__)
 
 @view.route('/home', methods=['GET', 'POST'])
+@view.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
     if request.method == 'POST':
