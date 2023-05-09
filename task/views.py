@@ -27,3 +27,12 @@ def delete_post(id):
         db.session.delete(todo)
         db.session.commit()
     return redirect(url_for('view.home'))
+
+@view.route('/post-complete/<id>')
+@login_required
+def task_complete(id):
+    todo = Todo.query.filter_by(id=id).first()
+    if todo:
+        todo.completed = True
+        db.session.commit()
+    return redirect(url_for('view.home'))
